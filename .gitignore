@@ -1,0 +1,11 @@
+*.sqlite3
+venv
+virtualenv
+_pycache_
+*.pyc
+.idea
+.vscode
+*.log
+.DS_Store
+*.db
+.env

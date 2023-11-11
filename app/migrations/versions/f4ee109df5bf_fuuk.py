@@ -1,8 +1,8 @@
-"""REFACTORY  migration Rooms,Booking,Users
+"""fuuk
 
-Revision ID: a58b4ccda685
+Revision ID: f4ee109df5bf
 Revises: 745282d2d642
-Create Date: 2023-11-10 21:41:05.508299
+Create Date: 2023-11-11 21:02:36.702196
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'a58b4ccda685'
+revision: str = 'f4ee109df5bf'
 down_revision: Union[str, None] = '745282d2d642'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -45,8 +45,8 @@ def upgrade() -> None:
     sa.Column('date_from', sa.Date(), nullable=False),
     sa.Column('date_to', sa.Date(), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
-    sa.Column('total_cost', sa.Integer(), sa.Computed('date_to - date_from * price', ), nullable=True),
-    sa.Column('total_days', sa.Integer(), sa.Computed('date_to - date_from', ), nullable=True),
+    sa.Column('total_cost', sa.Integer(), sa.Computed('(date_from - date_to) * price', ), nullable=True),
+    sa.Column('total_days', sa.Integer(), sa.Computed('date_from - date_to', ), nullable=True),
     sa.ForeignKeyConstraint(['room_id'], ['rooms.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
