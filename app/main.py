@@ -18,5 +18,4 @@ def get_hotels(
     date_from: date,
     date_to: date):
 
-
     return Shotel

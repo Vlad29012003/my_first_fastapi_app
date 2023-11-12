@@ -1,14 +1,17 @@
 from fastapi import APIRouter
+from app.booking.models import Booking
+from sqlalchemy import select
+from app.booking.service import BookingService
+from app.database import asynch_session_maker
 
 router = APIRouter(
     prefix='/bookings',
-    tags= ['бронирование']
+    tags= ['бронирование'],
 )
 
 @router.get('')
-def get_bookings():
-    pass
+async def get_bookings():
+    return await BookingService.find_one_or_none(room_id =2)
 
-@router.get('/{booking_id}')
-def get_bookings2(booking_id):
-    pass
+
+
