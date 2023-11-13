@@ -12,4 +12,4 @@ class Rooms(Base):
     price =Column(Integer,nullable=False)
     services =Column(JSON,nullable=True)
     quantity =Column(Integer,nullable=False)
-    image_id =Column(Integer)
+    image_id =Column(Integer) 

@@ -1,9 +1,12 @@
+# МОДЕЛЬКА ТАБЛИЦЫ В БЭКЕНДЕ 
+
 from app.database import Base
 from sqlalchemy import Column
 from sqlalchemy import Integer
 from sqlalchemy import  ForeignKey ,Date , Computed
 
 
+# В Base будет хранится данные, что у нас есть база данных Bookings
 class Booking(Base):
     __tablename__='bookings'
 
@@ -13,5 +16,5 @@ class Booking(Base):
     date_from = Column(Date,nullable=False)
     date_to = Column(Date,nullable=False)
     price = Column(Integer,nullable=False)
-    total_cost = Column(Integer,Computed("(date_from - date_to) * price"))
-    total_days = Column(Integer,Computed("date_from - date_to"))
+    total_cost = Column(Integer, Computed('(date_to - date_from) * price'))
+    total_days = Column(Integer, Computed('date_to - date_from'))
