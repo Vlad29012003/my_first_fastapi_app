@@ -19,6 +19,7 @@ from app.database import Base
 # access to the values within the .ini file in use.
 config = context.config
 
+# чтобы flembic понимал с каким бд работает и с чкм сравнивать модели 
 config.set_main_option('sqlalchemy.url', f"{DATABASE_URL}?async_fallback=True")
 
 # Interpret the config file for Python logging.

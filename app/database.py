@@ -1,7 +1,6 @@
 # ФАЙЛ СО ВСЕМИ ОСНОВНЫМИ НАСТРОЙКАМИ БАЗЫ ДАННЫХ, ЗДЕСЬ ПРОИСХОДИТ ПОДКЛЮЧЕНИЕ К БД И СОЗДАНИЕ НЕКОТОРЫХ СЕССИЙ 
 # ДЛЯ РАБОТЫ С БД, ЧТОБЫ ИХ НЕ НУЖНО БЫЛО СОЗДАВАТЬ В ДРУГИЗ МЕСТАХ 
 
-
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import DeclarativeBase , sessionmaker
 from .config import DATABASE_URL
