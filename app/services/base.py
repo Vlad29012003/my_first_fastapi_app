@@ -1,5 +1,5 @@
 from app.database import asynch_session_maker
-from sqlalchemy import select
+from sqlalchemy import select , insert 
 from app.booking.models import Booking
 
 #ДЛЯ ИЗБЕЖАНИЯ ПОВТОРНЫХ МЕТОДОВ 
@@ -25,7 +25,6 @@ class BaseService:
             return result.scalar_one_or_none()
 
   # ДЕДАЕТ ЗАПРОС К ПОЛУЧЕННОЙ МОДЕЛИ  
-
     @classmethod
     async def find_all(cls, **filter_by):
         async with asynch_session_maker() as session:
@@ -33,3 +32,12 @@ class BaseService:
             query = select(cls.model.__table__.columns).filter_by(**filter_by)
             result = await session.execute(query)
             return result.mappings().all()
+        
+
+    @classmethod
+    async def add(cls, **data):
+        async with asynch_session_maker() as session:
+            query = insert(cls.model).values(**data)
+            await session.execute(query)
+            # ФИКСИРУЕТ ИЗМЕНЕНИЯ (INSERT , UPDATE , DELETE) В БАЗЕ ДАННЫХ 
+            await session.commit()

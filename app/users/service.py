@@ -1,3 +1,5 @@
+# SERVICE СЛУЖИТ ДЛЯ ОБРАЩЕНИЯ В БАЗУ ДАННЫХ
+
 from app.services.base import BaseService
 from app.users.models import Users
 
