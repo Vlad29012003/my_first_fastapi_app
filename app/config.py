@@ -17,3 +17,10 @@ ALGORITHM = os.environ.get('ALGORITHM')
 
 # URL БАЗЫ ДАННЫХ ЧТОБЫ ПОМОЧЬ АЛХИМИИ НАЙТИ ГДЕ НАХОДИТСЯ БАЗА ДАННЫХ 
 DATABASE_URL = f'postgresql+asyncpg://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+
+
+# ГЕНЕРАЦИЯ СЕКРЕТНОГО КЛЮЧА В ТЕРМИНАЛЕ 
+# python3.8 
+# from secrets import token_bytes
+# from base64 import b64encode 
+# print (b64encode (token_bytes(32)).decode())

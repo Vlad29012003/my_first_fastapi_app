@@ -2,6 +2,7 @@ from app.database import asynch_session_maker
 from sqlalchemy import select , insert 
 from app.booking.models import Booking
 
+
 #ДЛЯ ИЗБЕЖАНИЯ ПОВТОРНЫХ МЕТОДОВ 
 class BaseService:
     #ПРИНИМАЕТ МОДЕЛИ 
