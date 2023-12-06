@@ -7,7 +7,6 @@ from jose import jwt
 from app.config import SECRET_KEY , ALGORITHM
 
 
-
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated ='auto')
 
 # ФУНКЦИЯ ХЭШИРОВАНИЯ ПАРОЛЯ 
