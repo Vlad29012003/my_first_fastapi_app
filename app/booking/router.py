@@ -4,6 +4,7 @@ from app.users.dependencies import get_current_user
 from app.users.models import Users
 from app.booking.service import BookingService
 from datetime import datetime, date, time
+from app.exeptions import RoomCannotBeBooked
 
 from typing import List
 
@@ -32,4 +33,6 @@ async def add_booking(
     room_id: int, date_from: date, date_to:date,
     user:Users = Depends(get_current_user),
 ):
-    await BookingService.add(user.id, room_id,date_from,date_to)
+   booking =  await BookingService.add(user.id, room_id,date_from,date_to)
+   if not booking:
+       raise RoomCannotBeBooked
