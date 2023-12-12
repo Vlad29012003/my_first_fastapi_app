@@ -30,6 +30,7 @@ class BookingService(BaseService):
         WHERE rooms.id = 1
         GROUP BY rooms.quantity, booked_rooms.room_id
         """
+# Создание SQL Alhemy request на основе SQL request 
         async with asynch_session_maker() as session:
             booked_rooms = select(Booking).where(
                 and_(
@@ -45,8 +46,10 @@ class BookingService(BaseService):
                         ),
                     )
                 )
-            ).cte('booked_rooms')
+            ).cte('booked_rooms') # облегчают написание сложных запросов
 
+
+            # вторая часть SQL request 
             """
             SELECT rooms.quantity - COUNT(booked_rooms.room_id) FROM rooms
             LEFT JOIN booked_rooms ON booked_rooms.room_id = rooms.id
@@ -54,6 +57,7 @@ class BookingService(BaseService):
             GROUP BY rooms.quantity, booked_rooms.room_id
             """
 
+            # получаем rooms left 
             get_rooms_left = select(
                 (Rooms.quantity - func.count(booked_rooms.c.room_id).label('rooms_left'))
                 ).select_from(Rooms).join(
@@ -65,11 +69,12 @@ class BookingService(BaseService):
 
             rooms_left = await session.execute(get_rooms_left)
             rooms_left: int  = rooms_left.scalar()
-             
+
+            # Добавляем Booking только если есть свободные комнаты 
             if rooms_left > 0:
                 print(f"Rooms left: {rooms_left}")
                 print(f"Date from: {date_from}, Date to: {date_to}")
-
+            # получение цены чтобы сам пользователь не назначал цену 
                 get_price = select(Rooms.price).filter_by(id = room_id)
                 price = await session.execute(get_price)
                 price: int = price.scalar()

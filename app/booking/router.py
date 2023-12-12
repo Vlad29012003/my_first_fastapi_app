@@ -27,7 +27,7 @@ async def add_booking(
     await BookingService.add(user_id = user.id)
 
 
-
+# router для добавления букинга 
 @router.post('')
 async def add_booking(
     room_id: int, date_from: date, date_to:date,
