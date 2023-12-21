@@ -6,7 +6,6 @@ from app.booking.service import BookingService
 from datetime import datetime, date, time
 from app.exeptions import RoomCannotBeBooked
 
-from typing import List
 
 router = APIRouter(
     prefix='/bookings',

@@ -4,7 +4,7 @@ from sqlalchemy import select , delete , insert , func , and_ , or_
 from app.booking.models import Booking
 from app.services.base import BaseService
 from datetime import datetime, date, time
-from app.rooms.models import Rooms
+from app.hotels.rooms.models import Rooms
 
 
 class BookingService(BaseService):
